@@ -21,7 +21,7 @@ The API is deployed on AWS using Lambda functions and API Gateway, managed with 
 
 1. Clone the repository:
   ```sh
-  git clone https://github.com/yourusername/magic_eight_api.git
+  git clone https://github.com/jdmartens/magic_eight_api.git
   cd magic_eight_api```
 
 2. Create and activate a virtual environment:
