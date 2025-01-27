@@ -6,7 +6,7 @@ service: magic-8-ball-api
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.13
   stage: ${opt:stage, 'dev'}
   region: us-east-2
 
@@ -26,8 +26,4 @@ functions:
 
 plugins:
   - serverless-python-requirements
-
-custom:
-  pythonRequirements:
-    dockerizePip: non-linux
 
