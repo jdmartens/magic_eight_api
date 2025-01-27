@@ -1,0 +1,29 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: jdmartens
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: magic-eight-api
+service: magic-8-ball-api
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage, 'dev'}
+  region: us-east-2
+
+functions:
+  classicResponse:
+    handler: classic_response.lambda_handler
+    events:
+      - http:
+          path: classic
+          method: get
+  sassyResponse:
+    handler: sassy_response.lambda_handler
+    events:
+      - http:
+          path: sassy
+          method: get
+
+plugins:
+  - serverless-python-requirements
+
