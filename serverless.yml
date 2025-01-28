@@ -21,6 +21,8 @@ functions:
           method: get
   sassyResponse:
     handler: sassy_response.lambda_handler
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
     events:
       - http:
           path: sassy
@@ -33,3 +35,11 @@ plugins:
 custom:
   pythonRequirements:
     layer: true
+    slim: true
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+    - .git/**
+    - .serverless/**
