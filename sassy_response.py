@@ -1,10 +1,16 @@
+try:
+  import unzip_requirements
+except ImportError:
+  pass
+
 import random
 import requests
-from openai import OpenAPI
+from openai import OpenAI
 import json
 import os
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 
 def lambda_handler(event, context):
     question = event.get('queryStringParameters', {}).get('question', 'No question asked')
@@ -25,8 +31,11 @@ def lambda_handler(event, context):
     #     'body': f'Question: {question}\nSassy Answer: {response}'
     # }
 
+    # models = client.models.list()
+    # print(models)
+
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a sarcastic assistant. Provide a witty and sarcastic response to the user's question."},
             {"role": "user", "content": question}
