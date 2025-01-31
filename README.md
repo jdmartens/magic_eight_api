@@ -1,6 +1,6 @@
 # magic_eight_api
 
-A serverless Magic 8-Ball API built with Python 3.13, AWS Lambda, and API Gateway.
+A serverless Magic 8-Ball API built with Python 3.13, AWS Lambda, API Gateway, and OpenAI
 
 ## Description
 
@@ -59,6 +59,11 @@ After deployment, you'll receive URLs for both endpoints. You can test them usin
   curl "https://your-api-id.execute-api.us-east-2.amazonaws.com/dev/classic?question=Will%20it%20rain%20today?"
   curl "https://your-api-id.execute-api.us-east-2.amazonaws.com/dev/sassy?question=Should%20I%20eat%20pizza%20for%20breakfast?"
   ```
+Replace <your-api-id> and <region> with the appropriate values from your Serverless deployment output.
+
+## Using OpenAI to Create a Response
+
+The sassy_response function uses the OpenAI API to generate a witty and sarcastic response to the user's question. The OpenAI API key must be set in the environment variables.
 
 ## Development
 
