@@ -1,3 +1,4 @@
+import json
 import random
 
 def lambda_handler(event, context):
@@ -22,6 +23,7 @@ def lambda_handler(event, context):
             'Access-Control-Allow-Methods': 'GET, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type,Authorization'
         },
-        'body': f'Question: {question}\nAnswer: {response}'
+        'body': json.dumps({'answer': response}), 
+
     }
 
