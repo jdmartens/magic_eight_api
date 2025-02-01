@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     sarcastic_answer = response.choices[0].message.content
 
     allowed_origins = ['http://localhost:5173', 'http://magic-eight-ball-alb-976406237.us-east-2.elb.amazonaws.com']
-    origin = event.get('headers', {}).get('Origin', '')
+    origin = event.get('headers', {}).get('origin', '')
 
     cors_headers = {
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
