@@ -22,13 +22,22 @@ def lambda_handler(event, context):
     
     sarcastic_answer = response.choices[0].message.content
 
+    allowed_origins = ['http://localhost:5173', 'http://magic-eight-ball-alb-976406237.us-east-2.elb.amazonaws.com']
+    origin = event.get('headers', {}).get('Origin', '')
+
+    cors_headers = {
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type,Authorization'
+    }
+
+    if origin in allowed_origins:
+        cors_headers['Access-Control-Allow-Origin'] = origin
+    else:
+        cors_headers['Access-Control-Allow-Origin'] = allowed_origins[0]  # Default origin
+
     return {
         'statusCode': 200,
-        'headers': {
-            'Access-Control-Allow-Origin': 'http://localhost:5173',
-            'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type,Authorization'
-        },
+        'headers': cors_headers,
         'body': json.dumps({'answer': sarcastic_answer})
     }
 
